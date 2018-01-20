@@ -16,11 +16,11 @@ use Commands\Spawn;
 use Commands\Fly;
 
 #Economy
-use Commands\Economy\AddMoney;
-use Commands\Economy\Money;
-use Commands\Economy\SeeMoney;
-use Commands\Economy\SetMoney;
-use Commands\Economy\TakeMoney;
+use Commands\AddMoney;
+use Commands\Money;
+use Commands\SeeMoney;
+use Commands\SetMoney;
+use Commands\TakeMoney;
 
 #Events
 use Events\onRespawnEvent;
