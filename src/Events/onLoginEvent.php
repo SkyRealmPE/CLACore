@@ -18,6 +18,9 @@ class onLoginEvent implements Listener{
     public function onLogin(PlayerLoginEvent $e){
         $player = $e->getPlayer();
         $core = $this->core;
+        
+        $player->setFood(20);
+        $player->setHealth(20);
         if($core->cfg->get("Always-Spawn") == true){
             $player->teleport($core->getServer()->getDefaultLevel()->getSafeSpawn());
         }
