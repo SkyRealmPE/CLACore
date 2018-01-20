@@ -10,9 +10,17 @@
 
 - [x] Always Spawn
 - [x] Rank System
-- [x] Title
-- [x] Commands
+- [x] Join Title
+- [x] Respawn Title
 - [x] Economy System
+ 
+ ## Infomations Features:
+ 
+ - [x] Always Spawn - Teleport you to spawn when you join.
+ - [x] Rank System - Change your nametag, chat tag.
+ - [x] Join Title - Big text will be in your screen when you join.
+ - [x] Respawn Title - Big text will be in your screen when you respawn.
+ - [x] Economy System - EconomySystem like money system.
  
  ## Need Help?
  
