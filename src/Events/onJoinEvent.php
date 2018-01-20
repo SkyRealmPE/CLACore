@@ -9,6 +9,9 @@ use pocketmine\Player;
 
 use pocketmine\utils\Config;
 
+use pocketmine\network\mcpe\protocol\LevelEventPacket;
+
+use Tasks\GuardianTask;
 use Tasks\TitleTask;
 
 use pocketmine\utils\TextFormat as C;
@@ -27,6 +30,13 @@ class onJoinEvent implements Listener {
         $player = $e->getPlayer();
         $name = $player->getName();
         $core = $this->core;
+
+        #Guardian
+        $config = new Config($this->core->getDataFolder()."config.yml", Config::YAML);
+        if($config->get("Allow-Guardian") == true){
+            $core->getServer()->getScheduler()->scheduleDelayedTask(new GuardianTask($core, $player), 25);
+        }
+
         /*$config = new Config($core->getDataFolder()."config.yml", Config::YAML);
         foreach ($config->get("Allowed-Devices") as $os){
             if ($os == $player->getDeviceOS()){
@@ -35,7 +45,7 @@ class onJoinEvent implements Listener {
             }
         }*/
         if ($player->spawned){
-            $core->getServer()->getScheduler()->scheduleDelayedTask(new TitleTask($core, $player), 50); //2.5 Sek.
+            $core->getServer()->getScheduler()->scheduleDelayedTask(new TitleTask($core, $player), 50); //2.5 Second.
         }
     }
 

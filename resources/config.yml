@@ -5,6 +5,7 @@
 #-----------JOIN----------#
 Always-Spawn: true
 Title-Join: true
+Allow-Guardian: true
 
 #-----------RESPAWN----------#
 Title-Respawn: true
