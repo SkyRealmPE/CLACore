@@ -1,20 +1,18 @@
 ---
-#CLACore plugin for PocketMine-MP
-
+#CLACore plugin for PocketMine-MP and forks
 #@Author: CLADevs Team
 
-
-#----------------------------------------# RESPAWN #----------------------------------------#
-# Tags:
-# - {name}
-
-Title-Respawn-title: "Respawned"
-Title-Respawn-subtitle: "{name}"
-
-#----------------------------------------# JOIN #----------------------------------------#
+#-----------JOIN----------#
 # Tags:
 # - {name}
 
 Title-Join-title: "Welcome"
 Title-Join-subtitle: "{name}"
+
+#-----------RESPAWN----------#
+# Tags:
+# - {name}
+
+Title-Respawn-title: "Respawned"
+Title-Respawn-subtitle: "{name}"
 ...

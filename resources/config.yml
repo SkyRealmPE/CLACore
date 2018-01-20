@@ -1,51 +1,33 @@
 ---
 #CLACore plugin for PocketMine-MP and forks
-
 #@Author: CLADevs Team
 
-#----------------------------------------# JOIN #----------------------------------------#
-#Teleport you to spawn when you join & login
-#true or false
+#-----------JOIN----------#
 Always-Spawn: true
-
-#----------------------------------------# RANK #----------------------------------------#
-#Allow Rank in their chat and above head
-#true or false
-Allow-Rank: true
-
-#----------------------------------------# MONEY SYSTEM #---------------------------------#
-#allow you to use a personalized economy of money
-#true or false
-Allow-Money: true
-
-#----------------------------------------# TITLE #----------------------------------------#
-#You can edit title, subtitle in title.yml
-
-#Allow big text in screen when you respawn
-#true or false
-Title-Respawn: true
-
-#Allow big text in screen when you join
-#true or false
 Title-Join: true
 
-#Disable Hunger Changing
-#So players can always sprint :D
+#-----------RESPAWN----------#
+Title-Respawn: true
+
+#-----------ECONOMY----------#
+Allow-Economy: true
+Economy-Prefix: [CLADevs]
+
+#-----------HUNGER----------#
 Disable-HungerChange: true
 
-#----------------------------------------# NO VOID #----------------------------------------#
-#You can edit this here for allow no void on world
-#Allow no void on world empty
-Allow-NoVoid: true
-#Name world to allow the no void system
-No-Void-World: "hub"
+#-----------Rank----------#
+Allow-Rank: true
 
-#---------------------------------------# HIGHPING KICK #------------------------------------#
-#Enable or Disable this option if you want that players with high ping get kicked
+#-----------PING----------#
 Enable-HighPingKick: true
 Max-Ping: 500
 
-#---------------------------------------# DEVICE BLOCKING #----------------------------------#
+#-----------NO VOID----------#
+Allow-NoVoid: true
+No-Void-World: world
+
+#-----------DEVICE----------#
 #Device List:
 #Android = 1, IOS = 2, Windows = 7
 #Allowed-Devices:
