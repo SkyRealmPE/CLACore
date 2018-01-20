@@ -12,7 +12,7 @@ use pocketmine\utils\TextFormat as C;
 
 use CLACore\Core;
 
-class MoneyCommand extends PluginCommand{
+class Money extends PluginCommand{
 
     public function __construct($name, Core $plugin){
         parent::__construct($name, $plugin);
