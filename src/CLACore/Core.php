@@ -2,25 +2,25 @@
 
 namespace CLACore;
 
-
-use Tasks\HighPingCheckTask;
 use pocketmine\Player;
+use pocketmine\Server;
+
 use pocketmine\plugin\PluginBase;
 
 use pocketmine\utils\Config;
 use pocketmine\utils\Textformat as C;
 
 #Commands
-use CLACore\Commands\Ping;
-use CLACore\Commands\Hub;
-use CLACore\Commands\Fly;
+use Commands\Ping;
+use Commands\Spawn;
+use Commands\Fly;
 
-#Economy Command
-use Economy\AddMoneyCommand;
-use Economy\MoneyCommand;
-use Economy\SeeMoneyCommand;
-use Economy\SetMoneyCommand;
-use Economy\TakeMoneyCommand;
+#Economy
+use Commands\AddMoney;
+use Commands\Money;
+use Commands\SeeMoney;
+use Commands\SetMoney;
+use Commands\TakeMoney;
 
 #Events
 use Events\onRespawnEvent;
@@ -29,7 +29,11 @@ use Events\onLoginEvent;
 use Events\onExhaustEvent;
 use Events\onMoveEvent;
 
+#Rank
 use Ranks\Rank;
+
+#Tasks
+use Tasks\HighPingCheckTask;
 
 class Core extends PluginBase{
 
@@ -37,14 +41,11 @@ class Core extends PluginBase{
     public $money;
 
     public function onEnable(){
-        $this->onConfig();
-        $this->onEvent();
-        $this->onCommands();
-        $this->onEconomy();
-        $config = new Config($this->getDataFolder()."config.yml", Config::YAML);
-        if ($config->get("Enable-HighPingKick") == true){
-            $this->getServer()->getScheduler()->scheduleRepeatingTask(new HighPingCheckTask($this), 100); //5 Sek.
-        }
+        $this->RegConfig();
+        $this->RegEvents();
+        $this->RegCommands();
+        $this->RegEconomy();
+        $this->RegTasks();
         $this->getLogger()->info(C::GREEN."Enabled.");
     }
 
@@ -52,7 +53,7 @@ class Core extends PluginBase{
         $this->getLogger()->info(C::RED."Disabled.");
     }
 
-    public function onConfig(){
+    public function RegConfig(){
         @mkdir($this->getDataFolder());
         $this->saveResource("config.yml");
         $this->saveResource("rank.yml");
@@ -62,7 +63,7 @@ class Core extends PluginBase{
         $this->cfg = new Config($this->getDataFolder() . "config.yml", Config::YAML);
    }
 
-    public function onEvent(){
+    public function RegEvents(){
         if($this->cfg->get("Allow-Rank") == true){
             $this->getServer()->getPluginManager()->registerEvents(($this->Rank = new Rank($this)), $this);
         }
@@ -73,19 +74,25 @@ class Core extends PluginBase{
         $this->getServer()->getPluginManager()->registerEvents(($this->onMoveEvent = new onMoveEvent($this)), $this);
     }
 
-    private function onCommands(){
-        $this->getServer()->getCommandMap()->register("hub", new Hub("hub", $this));
+    private function RegCommands(){
+        $this->getServer()->getCommandMap()->register("Spawn", new Spawn("Spawn", $this));
         $this->getServer()->getCommandMap()->register("ping", new Ping("ping", $this));
         $this->getServer()->getCommandMap()->register("fly", new Fly("fly", $this));
     }
 
-    private function onEconomy(){
+    private function RegEconomy(){
         if($this->cfg->get("Allow-Money") == true){
-            $this->getServer()->getCommandMap()->register("addmoney", new AddMoneyCommand("addmoney", $this));
-            $this->getServer()->getCommandMap()->register("takemoney", new TakeMoneyCommand("takemoney", $this));
-            $this->getServer()->getCommandMap()->register("setmoney", new SetMoneyCommand("setmoney", $this));
-            $this->getServer()->getCommandMap()->register("seemoney", new SeeMoneyCommand("seemoney", $this));
-            $this->getServer()->getCommandMap()->register("money", new MoneyCommand("money", $this));
+            $this->getServer()->getCommandMap()->register("addmoney", new AddMoney("addmoney", $this));
+            $this->getServer()->getCommandMap()->register("takemoney", new TakeMoney("takemoney", $this));
+            $this->getServer()->getCommandMap()->register("setmoney", new SetMoney("setmoney", $this));
+            $this->getServer()->getCommandMap()->register("seemoney", new SeeMoney("seemoney", $this));
+            $this->getServer()->getCommandMap()->register("money", new Money("money", $this));
+        }
+    }
+
+    private function RegTasks(){
+        if ($this->cfg->get("Enable-HighPingKick") == true){
+            $this->getServer()->getScheduler()->scheduleRepeatingTask(new HighPingCheckTask($this), 100); //5 Seconds.
         }
     }
 
