@@ -25,10 +25,8 @@ class SeeMoney extends PluginCommand{
         if ($sender instanceof Player) {
             if (!isset($args[0])) {
                 $sender->sendMessage(C::RED . "That player cannot be found.");
-                return true;
-            }
-            if (!isset($args[0])) {
                 $sender->sendMessage("Usage: /seemoney <player>");
+                return true;
             }
             $money = new Config($plugin->getDataFolder() . "money.yml", Config::YAML);
             $sender->sendMessage(C::AQUA . $args[0] . "'s " . C::YELLOW . "Money: " . C::GOLD . $money->get(strtolower($args[0])));
