@@ -18,6 +18,7 @@ class Money extends PluginCommand{
     public function __construct($name, Core $plugin){
         parent::__construct($name, $plugin);
         $this->setDescription("Check your moneys.");
+        $this->setAliases(["bal", "Bal", "Balance", "balance"]);
     }
 
     public function execute(CommandSender $sender, string $commandLabel, array $args){
