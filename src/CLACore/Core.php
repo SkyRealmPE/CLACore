@@ -16,11 +16,11 @@ use Commands\Spawn;
 use Commands\Fly;
 
 #Economy
-use Commands\AddMoney;
-use Commands\Money;
-use Commands\SeeMoney;
-use Commands\SetMoney;
-use Commands\TakeMoney;
+use Commands\Economy\AddMoney;
+use Commands\Economy\Money;
+use Commands\Economy\SeeMoney;
+use Commands\Economy\SetMoney;
+use Commands\Economy\TakeMoney;
 
 #Events
 use Events\onRespawnEvent;
@@ -81,7 +81,7 @@ class Core extends PluginBase{
     }
 
     private function RegEconomy(){
-        if($this->cfg->get("Allow-Money") == true){
+        if($this->cfg->get("Allow-Economy") == true){
             $this->getServer()->getCommandMap()->register("addmoney", new AddMoney("addmoney", $this));
             $this->getServer()->getCommandMap()->register("takemoney", new TakeMoney("takemoney", $this));
             $this->getServer()->getCommandMap()->register("setmoney", new SetMoney("setmoney", $this));
