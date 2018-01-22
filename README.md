@@ -4,7 +4,7 @@
 
 ## TODO
 
-* Please tell me in issue what feature i should add.
+* Please tell us in issue what feature we should add.
 
 ## Features:
 
