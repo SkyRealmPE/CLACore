@@ -12,7 +12,7 @@ Title-Respawn: true
 
 #-----------ECONOMY----------#
 Allow-Economy: true
-Economy-Prefix: [CLADevs]
+Economy-Prefix: CLADevs
 
 #-----------HUNGER----------#
 Disable-HungerChange: true

@@ -23,23 +23,26 @@ class SetMoney extends PluginCommand{
 
     public function execute(CommandSender $sender, string $commandLabel, array $args){
         $plugin = $this->getPlugin();
-        $EconomyPrefix = new Config($plugin->getDataFolder() . "config.yml");
-        $prefix = $EconomyPrefix->get("Economy-Prefix");
-        if(!$sender instanceof Player) {
-            $sender->sendMessage(C::RED . "Please use '$commandLabel' in game.");
-        }
-        if ($sender instanceof Player) {
+        $prefix = $plugin->cfg->get("Economy-Prefix");
             if ($sender->hasPermission("core.economy.set") || $sender->isOp()) {
                 if (!isset($args[1])) {
-                    $sender->sendMessage($prefix . C::RED . "That name isnt valid.");
+                    $sender->sendMessage("Usage: /setmoney <player> <money>");
                     return true;
                 }
                 if (!is_numeric($args[1])) {
-                    $sender->sendMessage($prefix . C::RED . "That number isnt valid.");
+                    $sender->sendMessage("$prefix " . C::RED . "$args[1] isnt valid number.");
                     return true;
                 }
-                $player = $this->main->getServer()->getPlayer($args[0]);
-                $money = new Config($this->main->getDataFolder() . "money.yml", Config::YAML);
+                $player = $plugin->getServer()->getPlayer($args[0]);
+                if (!$player instanceof Player) {
+                    if ($player instanceof ConsoleCommandSender) {
+                        $sender->sendMessage(C::RED . "$prefix " . C::RED . "Please provide a player.");
+                        return false;
+                    }
+                    $sender->sendMessage(C::RED . "$prefix " . C::RED . "$args[0] cannot be found.");
+                    return false;
+                }
+                $money = new Config($plugin->getDataFolder() . "money.yml", Config::YAML);
                 if (!isset($args[1])) {
                     $sender->sendMessage("Usage: /setmoney <player> <money>");
                     return true;
@@ -47,15 +50,13 @@ class SetMoney extends PluginCommand{
                 $nick = strtolower($player->getName());
                 $money->set($nick, (int)$args[1]);
                 $money->save();
-                $sender->sendMessage($prefix . C::GREEN . "You have set up at " . C::AQUA . $player->getName() . C::GREEN . $args[1] . C::GOLD . " money!");
-                $player->sendMessage($prefix . C::GREEN . "Your money has been set to " . C::AQUA . $args[1]);
+                $sender->sendMessage("$prefix " . C::GREEN . "You have set up at " . C::AQUA . $player->getName() . C::GREEN . " " . $args[1] . C::GOLD . " money!");
+                $player->sendMessage("$prefix " . C::GREEN . "Your money has been set to " . C::AQUA . $args[1]);
                 return true;
             }
             if (!$sender->hasPermission("core.economy.set")) {
                 $sender->sendMessage(C::RED . "You are not allow to use '$commandLabel' command.");
             }
-            return true;
-        }
         return true;
     }
 }

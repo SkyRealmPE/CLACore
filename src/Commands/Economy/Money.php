@@ -8,6 +8,7 @@ use pocketmine\Server;
 use pocketmine\command\CommandSender;
 use pocketmine\command\PluginCommand;
 
+use pocketmine\utils\Config;
 use pocketmine\utils\TextFormat as C;
 
 use CLACore\Core;
@@ -20,12 +21,15 @@ class Money extends PluginCommand{
     }
 
     public function execute(CommandSender $sender, string $commandLabel, array $args){
-        if ($sender instanceof Player) {
-            $plugin = $this->getPlugin();
-            $money = new Config($plugin->getDataFolder() . "money.yml", Config::YAML);
-            $sender->sendMessage(C::YELLOW . "Money: " . C::GOLD . $money->get(strtolower($sender->getName())));
-            return true;
+        $plugin = $this->getPlugin();
+        $money = new Config($plugin->getDataFolder() . "money.yml", Config::YAML);
+        if(!$sender instanceof Player) {
+            $sender->sendMessage(C::RED . "Please use '$commandLabel' in game.");
         }
+            if ($sender instanceof Player) {
+                $sender->sendMessage(C::YELLOW . "Money: " . C::GOLD . $money->get(strtolower($sender->getName())));
+                return true;
+            }
         return true;
     }
 }
