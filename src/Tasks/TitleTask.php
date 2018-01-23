@@ -9,24 +9,24 @@ use pocketmine\scheduler\PluginTask;
 
 class TitleTask extends PluginTask{
 
-	private $core, $player;
+	private $plugin, $player;
 
-	public function __construct(Core $core, Player $player){
-		$this->core = $core;
+	public function __construct(Core $plugin, Player $player){
+		$this->plugin = $plugin;
 		$this->player = $player;
-		parent::__construct($core);
+		parent::__construct($plugin);
 	}
 
 	public function onRun(int $currentTick){
 		$player = $this->player;
 		$name = $player->getName();
-		$core = $this->core;
-		$titlecfg = new Config($core->getDataFolder() . "title.yml", Config::YAML);
+		$plugin = $this->plugin;
+		$titlecfg = new Config($plugin->getDataFolder() . "title.yml", Config::YAML);
 		$title = $titlecfg->get("Title-Join-title");
 		$title = str_replace("{name}", $name, $title);
 		$subtitle = $titlecfg->get("Title-Join-subtitle");
 		$subtitle = str_replace("{name}", $name, $subtitle);
-		if($core->cfg->get("Title-Join") == true){
+		if($plugin->cfg->get("Title-Join") == true){
 			if($player->isOnline()){
 				$player->addTitle($title, $subtitle);
 			}
