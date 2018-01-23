@@ -1,6 +1,6 @@
 name: CLACore
 version: 1.0.0
-api: 3.0.0-ALPHA10
+api: [CLA, 3.0.0-ALPHA10]
 main: CLACore\Core
 author: CLADevs Team
 website: https://github.com/CLADevs/CLACore
