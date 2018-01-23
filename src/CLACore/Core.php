@@ -7,10 +7,10 @@ use pocketmine\plugin\PluginBase;
 use pocketmine\utils\{Textformat as C, Config};
 
 #Commands
-use Commands\{Fly, Spawn, Ping};
+use Commands\{FlyCommand, SpawnCommand, PingCommand};
 
 #Economy
-use Commands\Economy\{Money, AddMoney, SeeMoney, SetMoney, TakeMoney};
+use Commands\Economy\{MoneyCommand, AddMoneyCommand, SeeMoneyCommand, SetMoneyCommand, TakeMoneyCommand};
 
 #Events
 use Events\{onJoinEvent, onRespawnEvent, onLoginEvent, onExhaustEvent, onMoveEvent};
@@ -61,18 +61,18 @@ class Core extends PluginBase{
 	}
 
 	private function RegCommands(){
-		$this->getServer()->getCommandMap()->register("Spawn", new Spawn("Spawn", $this));
-		$this->getServer()->getCommandMap()->register("ping", new Ping("ping", $this));
-		$this->getServer()->getCommandMap()->register("fly", new Fly("fly", $this));
+		$this->getServer()->getCommandMap()->register("Spawn", new SpawnCommand("Spawn", $this));
+		$this->getServer()->getCommandMap()->register("ping", new PingCommand("ping", $this));
+		$this->getServer()->getCommandMap()->register("fly", new FlyCommand("fly", $this));
 	}
 
 	private function RegEconomy(){
 		if($this->cfg->get("Allow-Economy") == true){
-			$this->getServer()->getCommandMap()->register("addmoney", new AddMoney("addmoney", $this));
-			$this->getServer()->getCommandMap()->register("takemoney", new TakeMoney("takemoney", $this));
-			$this->getServer()->getCommandMap()->register("setmoney", new SetMoney("setmoney", $this));
-			$this->getServer()->getCommandMap()->register("seemoney", new SeeMoney("seemoney", $this));
-			$this->getServer()->getCommandMap()->register("money", new Money("money", $this));
+			$this->getServer()->getCommandMap()->register("addmoney", new AddMoneyCommand("addmoney", $this));
+			$this->getServer()->getCommandMap()->register("takemoney", new TakeMoneyCommand("takemoney", $this));
+			$this->getServer()->getCommandMap()->register("setmoney", new SetMoneyCommand("setmoney", $this));
+			$this->getServer()->getCommandMap()->register("seemoney", new SeeMoneyCommand("seemoney", $this));
+			$this->getServer()->getCommandMap()->register("money", new MoneyCommand("money", $this));
 		}
 	}
 
