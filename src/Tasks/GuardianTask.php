@@ -10,12 +10,10 @@ use pocketmine\network\mcpe\protocol\LevelEventPacket;
 
 class GuardianTask extends PluginTask{
 
-	private $plugin, $player;
+	private $player;
 	
-	public function __construct(Core $plugin, Player $player){
-		$this->plugin = $plugin;
+	public function __construct(Player $player){
 		$this->player = $player;
-		parent::__construct($plugin);
 	}
 
 	public function onRun(int $currentTick){
