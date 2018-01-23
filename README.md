@@ -4,6 +4,12 @@
 
 ## TODO
 
+- [ ] Tpa
+- [ ] Tpahere
+- [ ] Tpo
+- [ ] Tpaccept
+- [ ] Tpdeny
+
 * Please tell us in issue what feature we should add.
 
 ## Features:
@@ -14,6 +20,7 @@
 - [x] Respawn Title
 - [x] Economy System
 - [x] Guardian
+- [x] Teleport (Not Fully)
  
  ## Infomations Features:
  
@@ -23,6 +30,7 @@
  - [x] Respawn Title - Big text will be in your screen when you respawn.
  - [x] Economy System - EconomySystem like money system.
  - [x] Guardian - Guardian image pop up when you join.
+ - [x] Teleport - let you or someelse teleport around.
 
  ## Need Help?
  

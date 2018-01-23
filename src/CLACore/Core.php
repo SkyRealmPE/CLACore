@@ -27,6 +27,9 @@ use pocketmine\utils\{Textformat as C, Config};
 #Commands
 use Commands\{FlyCommand, SpawnCommand, PingCommand};
 
+#Teleport
+use Commands\Teleport\TpallCommand;
+
 #Economy
 use Commands\Economy\{MoneyCommand, AddMoneyCommand, SeeMoneyCommand, SetMoneyCommand, TakeMoneyCommand};
 
@@ -49,6 +52,7 @@ class Core extends PluginBase{
 		$this->RegEvents();
 		$this->RegCommands();
 		$this->RegEconomy();
+		$this->RegTeleport();
 		$this->RegTasks();
 		$this->getLogger()->info(C::GREEN."Enabled.");
 	}
@@ -91,6 +95,12 @@ class Core extends PluginBase{
 			$this->getServer()->getCommandMap()->register("setmoney", new SetMoneyCommand("setmoney", $this));
 			$this->getServer()->getCommandMap()->register("seemoney", new SeeMoneyCommand("seemoney", $this));
 			$this->getServer()->getCommandMap()->register("money", new MoneyCommand("money", $this));
+		}
+	}
+
+	private function RegTeleport(){
+		if($this->cfg->get("Allow-Teleport") == true){
+			$this->getServer()->getCommandMap()->register("Tpall", new TpallCommand("Tpall", $this));
 		}
 	}
 

@@ -28,6 +28,9 @@ Max-Ping: 500
 Allow-NoVoid: true
 No-Void-World: world
 
+#-----------TELEPORT----------#
+Allow-Teleport: true
+
 #-----------DEVICE----------#
 #Device List:
 #Android = 1, IOS = 2, Windows = 7
