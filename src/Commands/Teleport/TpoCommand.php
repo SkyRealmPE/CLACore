@@ -31,7 +31,7 @@ class TpoCommand extends PluginCommand{
 
 	public function __construct($name, Core $plugin){
 		parent::__construct($name, $plugin);
-        $this->setDescription("Teleport to another player without op user knowing it.");
+        $this->setDescription("Teleport to a player.");
         $this->setPermission("core.tpo");
         $this->setAliases(["tpo"]);
 	}
