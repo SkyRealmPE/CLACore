@@ -44,7 +44,8 @@ class TpallCommand extends PluginCommand{
         }
         
 		if(!$sender instanceof Player){
-			$sender->sendMessage(C::RED . "Please use '$commandLabel' in game.");
+            $sender->sendMessage(C::RED . "Please use '$commandLabel' in game.");
+            return true;
         }
 
         $name = $sender->getName();
