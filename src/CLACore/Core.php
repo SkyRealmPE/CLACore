@@ -28,7 +28,7 @@ use pocketmine\utils\{Textformat as C, Config};
 use Commands\{FlyCommand, SpawnCommand, PingCommand};
 
 #Teleport
-use Commands\Teleport\{TpallCommand, TpoCommand};
+use Commands\Teleport\{TpallCommand, TpoCommand, TpohereCommand};
 
 #Economy
 use Commands\Economy\{MoneyCommand, AddMoneyCommand, SeeMoneyCommand, SetMoneyCommand, TakeMoneyCommand};
@@ -102,6 +102,7 @@ class Core extends PluginBase{
 		if($this->cfg->get("Allow-Teleport") == true){
 			$this->getServer()->getCommandMap()->register("Tpall", new TpallCommand("Tpall", $this));
 			$this->getServer()->getCommandMap()->register("Tpo", new TpoCommand("Tpo", $this));
+			$this->getServer()->getCommandMap()->register("Tpohere", new TpohereCommand("Tpohere", $this));
 		}
 	}
 
