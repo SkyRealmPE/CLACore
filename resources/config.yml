@@ -2,6 +2,9 @@
 #CLACore plugin for PocketMine-MP and forks
 #@Author: CLADevs Team
 
+#-----------AUTO INV----------#
+Auto-Inv: true
+
 #-----------JOIN----------#
 Always-Spawn: true
 Title-Join: true
