@@ -6,7 +6,6 @@
 
 - [ ] Tpa
 - [ ] Tpahere
-- [ ] Tpo
 - [ ] Tpaccept
 - [ ] Tpdeny
 
