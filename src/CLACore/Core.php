@@ -41,6 +41,7 @@ use Ranks\Rank;
 
 #Tasks
 use Tasks\HighPingCheckTask;
+use Broadcast\BroadcastTask;
 
 class Core extends PluginBase{
 
@@ -63,12 +64,16 @@ class Core extends PluginBase{
 
 	public function RegConfig(){
 		@mkdir($this->getDataFolder());
+
+		$this->saveResource("broadcasts.yml");
 		$this->saveResource("config.yml");
+		$this->saveResource("money.yml");
 		$this->saveResource("rank.yml");
 		$this->saveResource("title.yml");
-		$this->saveResource("money.yml");
-		$this->money = new Config($this->getDataFolder() . "money.yml", Config::YAML);
+
+		$this->broadcastcfg = new Config($this->getDataFolder() . "broadcasts.yml", Config::YAML);
 		$this->cfg = new Config($this->getDataFolder() . "config.yml", Config::YAML);
+		$this->moneycfg = new Config($this->getDataFolder() . "money.yml", Config::YAML);
    }
 
 	public function RegEvents(){
@@ -108,6 +113,11 @@ class Core extends PluginBase{
 	}
 
 	private function RegTasks(){
+		if($this->cfg->get("Allow-Broadcast") == true){
+		$tick = $this->broadcastcfg->getNested("broadcast.tick");
+		$this->getServer()->getScheduler()->scheduleRepeatingTask(new BroadcastTask($this), $tick); #20 = 1 second
+		}
+
 		if($this->cfg->get("Enable-HighPingKick") == true){
 			$this->getServer()->getScheduler()->scheduleRepeatingTask(new HighPingCheckTask($this), 100); //5 Seconds.
 		}
@@ -118,9 +128,8 @@ class Core extends PluginBase{
 			$player = $player->getName();
 		}
 		$player = strtolower($player);
-		$moneyconf = new Config($this->getDataFolder() . "money.yml", Config::YAML);
-		$moneyconf->get($player);
-		return $moneyconf->get($player);
+		$this->moneycfg->get($player);
+		return $this->moneycfg->get($player);
 	}
 
 	public function reduceMoney($player, $money){
@@ -131,9 +140,8 @@ class Core extends PluginBase{
 			return true;
 		}
 		$player = strtolower($player);
-		$moneyconf = new Config($this->getDataFolder() . "money.yml", Config::YAML);
-		$moneyconf->set($player, (int)$moneyconf->get($player) - $money);
-		$moneyconf->save();
+		$this->moneycfg->set($player, (int)$this->moneycfg->get($player) - $money);
+		$this->moneycfg->save();
 		return true;
 	}
 
@@ -145,9 +153,8 @@ class Core extends PluginBase{
 			return true;
 		}
 		$player = strtolower($player);
-		$moneyconf = new Config($this->getDataFolder() . "money.yml", Config::YAML);
-		$moneyconf->set($player, (int)$moneyconf->get($player) + $money);
-		$moneyconf->save();
+		$this->moneycfg->set($player, (int)$this->moneycfg->get($player) + $money);
+		$this->moneycfg->save();
 		return true;
 	}
 }

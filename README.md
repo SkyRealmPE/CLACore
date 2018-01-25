@@ -20,6 +20,7 @@
 - [x] Economy System
 - [x] Guardian
 - [x] Teleport (Not Fully)
+- [x] Broadcast
  
  ## Infomations Features:
  
@@ -30,6 +31,7 @@
  - [x] Economy System - EconomySystem like money system.
  - [x] Guardian - Guardian image pop up when you join.
  - [x] Teleport - let you or someelse teleport around.
+ - [x] Broadcast - Send message to every player.
 
  ## Need Help?
  

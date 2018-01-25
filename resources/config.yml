@@ -5,6 +5,9 @@
 #-----------AUTO INV----------#
 Auto-Inv: true
 
+#-----------BROADCAST----------#
+Allow-Broadcast: true
+
 #-----------JOIN----------#
 Always-Spawn: true
 Title-Join: true
