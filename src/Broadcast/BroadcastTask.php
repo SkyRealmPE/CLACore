@@ -35,8 +35,7 @@ class BroadcastTask extends PluginTask{
 	}
 	
 	public  function onRun(int $currentTick){
-        $broadcast = new Config($this->plugin->getDataFolder() . "broadcasts.yml", Config::YAML);
-        $getmessages = $broadcast->getNested("broadcast.messages");
+        $getmessages = $this->plugin->broadcastcfg->getNested("broadcast.messages");
         $randomessages = $getmessages[array_rand($getmessages)];
         $messages = "$randomessages";
         $this->plugin->getServer()->broadcastMessage("$messages");
