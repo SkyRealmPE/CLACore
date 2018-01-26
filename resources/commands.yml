@@ -1,0 +1,17 @@
+---
+#Economy
+Economy: true
+Economy-Prefix: CLADevs
+
+#Teleport
+Teleport: true
+
+#Ping
+Ping: true
+High-Ping-Kick: true
+Max-Ping: 500
+
+#Other
+Fly: true
+Spawn: true
+...

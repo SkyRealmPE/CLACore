@@ -39,7 +39,7 @@ class AddMoneyCommand extends PluginCommand{
 			return true;
 		}
 		$plugin = $this->getPlugin();
-		$prefix = $plugin->cfg->get("Economy-Prefix");
+		$prefix = $plugin->cmdscfg->get("Economy-Prefix");
 		if($sender->hasPermission("core.economy.add") || $sender->isOp()){
 				if(!isset($args[1])){
 					$sender->sendMessage("Usage: /addmoney <player> <money>");

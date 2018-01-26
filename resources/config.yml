@@ -16,26 +16,15 @@ Allow-Guardian: true
 #-----------RESPAWN----------#
 Title-Respawn: true
 
-#-----------ECONOMY----------#
-Allow-Economy: true
-Economy-Prefix: CLADevs
-
 #-----------HUNGER----------#
 Disable-HungerChange: true
 
 #-----------Rank----------#
 Allow-Rank: true
 
-#-----------PING----------#
-Enable-HighPingKick: true
-Max-Ping: 500
-
 #-----------NO VOID----------#
 Allow-NoVoid: true
 No-Void-World: world
-
-#-----------TELEPORT----------#
-Allow-Teleport: true
 
 #-----------DEVICE----------#
 #Device List:

@@ -35,7 +35,7 @@ class SetMoneyCommand extends PluginCommand{
 
 	public function execute(CommandSender $sender, string $commandLabel, array $args){
 		$plugin = $this->getPlugin();
-		$prefix = $plugin->cfg->get("Economy-Prefix");
+		$prefix = $plugin->cmdscfg->get("Economy-Prefix");
 			if($sender->hasPermission("core.economy.set") || $sender->isOp()){
 				if(!isset($args[1])){
 					$sender->sendMessage("Usage: /setmoney <player> <money>");

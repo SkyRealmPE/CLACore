@@ -35,10 +35,9 @@ class HighPingCheckTask extends PluginTask {
 	}
 	
 	public  function onRun(int $currentTick){
-		$config = new Config($this->plugin->getDataFolder()."config.yml", Config::YAML);
 		foreach(Server::getInstance()->getOnlinePlayers() as $players){
-			if($players->getPing() > $config->get("Max-Ping")){
-				$players->kick(C::RED . "You have been removed from the game because you have a high ping", false);
+			if($players->getPing() > $this->plugin->cmdscfg->get("Max-Ping")){
+				$players->kick(C::RED . "Kicked for high ping.", false);
 			}
 		}
 	}
