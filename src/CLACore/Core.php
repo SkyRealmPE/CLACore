@@ -92,6 +92,7 @@ class Core extends PluginBase{
 		$this->getServer()->getCommandMap()->register("Spawn", new SpawnCommand("Spawn", $this));
 		$this->getServer()->getCommandMap()->register("ping", new PingCommand("ping", $this));
 		$this->getServer()->getCommandMap()->register("fly", new FlyCommand("fly", $this));
+		$this->getServer()->getCommandMap()->register("heal", new HealCommand("heal", $this));
 	}
 
 	private function RegEconomy(){
