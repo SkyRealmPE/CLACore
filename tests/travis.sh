@@ -10,7 +10,7 @@
  	esac
  done
  
- "$PHP_BINARY" ./tests/ConsoleScript.php --make . --relative . --out ./Slapper.phar
+ "$PHP_BINARY" ./tests/ConsoleScript.php --make . --relative . --out ./CLACore.phar
  
  if ls CLACore.phar >/dev/null 2>&1; then
      echo CLACore phar created successfully.
