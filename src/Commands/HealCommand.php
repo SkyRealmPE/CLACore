@@ -16,7 +16,7 @@ class Heal extends PluginCommand{
 
     public function __construct($name, Core $plugin){
         parent::__construct($name, $plugin);
-        $this->setDescription("Heal your self.");
+        $this->setDescription("Heal your self");
         $this->setPermission("core.heal");
     }
 
@@ -30,7 +30,7 @@ class Heal extends PluginCommand{
         }
         if($sender->hasPermission("core.heal") || $sender->isOp()) {
             if ($sender instanceof Player) {
-                $sender->sendMessage("§aYour Healed your self");
+                $sender->sendMessage(C::GREEN . "Your Healed your self");
                 $sender->setFood(20);
                 $sender->setHealth(20);
         }
