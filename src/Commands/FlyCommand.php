@@ -48,6 +48,12 @@ class FlyCommand extends PluginCommand{
 	}
 
 	public function execute(CommandSender $sender, string $commandLabel, array $args){
+		$plugin = $this->getPlugin();
+		$enablemessage = $plugin->msgcfg->get("Fly-Enable-Message");
+		$disablemessage = $plugin->msgcfg->get("Fly-Disable-Message");
+		$enablemessage = str_replace("{name}", $sender->getName(), $enablemessage);
+		$disablemessage = str_replace("{name}", $sender->getName(), $disablemessage);
+
 		if(!$sender->hasPermission("core.fly")){
 			$sender->sendMessage(C::RED . "You are not allow to use '$commandLabel' command.");
 		}
@@ -60,12 +66,12 @@ class FlyCommand extends PluginCommand{
 					$this->removePlayer($sender);
 					$sender->setAllowFlight(false);
 					$sender->setFlying(false);
-					$sender->sendMessage(C::RED . "Fly disabled.");
+					$sender->sendMessage("$disablemessage");
 					return true;
 				} else {
 					$this->addPlayer($sender);
 					$sender->setAllowFlight(true);
-					$sender->sendMessage(C::GREEN . "Fly enabled.");
+					$sender->sendMessage("$enablemessage");
 					return true;
 				}
 			}

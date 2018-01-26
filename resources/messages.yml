@@ -1,0 +1,14 @@
+---
+#Tags List:
+#- {name} works for (Spawn, Fly)
+
+#-----------ECONOMY----------#
+Economy-Prefix: CLADevs
+
+#-----------FLY----------#
+Fly-Enable-Message: §aFly enabled.
+Fly-Disable-Message: §cFly disabled.
+
+#-----------SPAWN----------#
+Spawn-Teleport-Message: §aTeleporting §b{name} to spawn.
+...

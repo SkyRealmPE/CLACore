@@ -37,16 +37,17 @@ class SpawnCommand extends PluginCommand{
 	 
 	public function execute(CommandSender $sender, string $commandLabel, array $args): bool{
 		if($sender instanceof Player){
+			$plugin = $this->getPlugin();
+			$teleport = $plugin->getServer()->getDefaultLevel()->getSafeSpawn();
+			$teleportmessage = $plugin->msgcfg->get("Spawn-Teleport-Message");
+			$teleportmessage = str_replace("{name}", $sender->getName(), $teleportmessage);
 			$level = $sender->getLevel();
 			$x = $sender->getX();
 			$y = $sender->getY();
 			$z = $sender->getZ();
-			$sender->setFood(20);
-			$sender->setHealth(20);
-			$name = $sender->getName();
 			$spawn = new Vector3($x, $y, $z);
-			$sender->sendMessage(C::GREEN . "Teleporting to spawn.");
-			$sender->teleport($this->getPlugin()->getServer()->getDefaultLevel()->getSafeSpawn());
+			$sender->sendMessage("$teleportmessage");
+			$sender->teleport($teleport);
 			$level->addSound(new EndermanTeleportSound($spawn));
 		} else {
 			$sender->sendMessage(C::RED . "Please use '$commandLabel' in game.");

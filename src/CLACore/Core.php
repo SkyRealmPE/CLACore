@@ -62,12 +62,15 @@ class Core extends PluginBase{
 		$this->getLogger()->info(C::RED."Disabled.");
 	}
 
+	#-----------Register config----------#
+
 	public function RegConfig(){
 		@mkdir($this->getDataFolder());
 
 		$this->saveResource("broadcasts.yml");
 		$this->saveResource("commands.yml");
 		$this->saveResource("config.yml");
+		$this->saveResource("messages.yml");
 		$this->saveResource("money.yml");
 		$this->saveResource("rank.yml");
 		$this->saveResource("title.yml");
@@ -75,8 +78,11 @@ class Core extends PluginBase{
 		$this->broadcastcfg = new Config($this->getDataFolder() . "broadcasts.yml", Config::YAML);
 		$this->cmdscfg = new Config($this->getDataFolder() . "commands.yml", Config::YAML);
 		$this->cfg = new Config($this->getDataFolder() . "config.yml", Config::YAML);
+		$this->msgcfg = new Config($this->getDataFolder() . "messages.yml", Config::YAML);
 		$this->moneycfg = new Config($this->getDataFolder() . "money.yml", Config::YAML);
    }
+
+   #-----------Register events----------#
 
 	public function RegEvents(){
 
@@ -91,6 +97,8 @@ class Core extends PluginBase{
 		$this->getServer()->getPluginManager()->registerEvents(($this->onExhaustEvent = new onExhaustEvent($this)), $this);
 		$this->getServer()->getPluginManager()->registerEvents(($this->onMoveEvent = new onMoveEvent($this)), $this);
 	}
+
+	#-----------Register commands----------#
 
 	private function RegCommands(){
 
@@ -107,6 +115,8 @@ class Core extends PluginBase{
 		}		
 	}
 
+	#-----------Register economy----------#
+
 	private function RegEconomy(){
 		if($this->cmdscfg->get("Economy") == true){
 			$this->getServer()->getCommandMap()->register("addmoney", new AddMoneyCommand("addmoney", $this));
@@ -117,6 +127,8 @@ class Core extends PluginBase{
 		}
 	}
 
+	#-----------Register teleport----------#
+
 	private function RegTeleport(){
 		if($this->cmdscfg->get("Teleport") == true){
 			$this->getServer()->getCommandMap()->register("Tpall", new TpallCommand("Tpall", $this));
@@ -124,6 +136,8 @@ class Core extends PluginBase{
 			$this->getServer()->getCommandMap()->register("Tpohere", new TpohereCommand("Tpohere", $this));
 		}
 	}
+
+	#-----------Register tasks----------#
 
 	private function RegTasks(){
 		if($this->cfg->get("Allow-Broadcast") == true){
@@ -135,6 +149,8 @@ class Core extends PluginBase{
 			$this->getServer()->getScheduler()->scheduleRepeatingTask(new HighPingCheckTask($this), 100); //5 Seconds.
 		}
 	}
+
+	#-----------Other Economys----------#
 
 	public function myMoney($player){
 		if($player instanceof Player){
