@@ -30,10 +30,8 @@ class Heal extends PluginCommand{
         }
         if($sender->hasPermission("core.heal") || $sender->isOp()) {
             if ($sender instanceof Player) {
-                $sender->sendMessage(C::GREEN . "Your Healed your self");
-                $sender->setFood(20);
-                $sender->setHealth(20);
-        }
+                
+            }
         return true;
     }
 }
