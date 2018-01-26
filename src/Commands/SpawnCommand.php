@@ -43,8 +43,8 @@ class SpawnCommand extends PluginCommand{
 			$z = $sender->getZ();
 			$sender->setFood(20);
 			$sender->setHealth(20);
-			$name = $player->getName();
-			$sende->sendMessage("§7Welcome back, " . "§c$name");
+			$name = $sender->getName();
+			$sender->sendMessage(C::GRAY . "§7Welcome back, " . C::RED . $name);
 			$spawn = new Vector3($x, $y, $z);
 			$sender->sendMessage(C::GREEN . "Teleporting to spawn.");
 			$sender->teleport($this->getPlugin()->getServer()->getDefaultLevel()->getSafeSpawn());
