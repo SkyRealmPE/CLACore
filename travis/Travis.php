@@ -17,7 +17,7 @@ fclose($pipes[1]);
 fclose($pipes[2]);
 echo "\n\nReturn value: ". proc_close($server) ."\n";
 if(count(glob("plugins/CLADevs/CLACore*.phar")) === 0){
-	echo "No BoxCore phar created!\n";
+	echo "No CLACore phar created!\n";
 	exit(1);
 }else{
 	exit(0);
