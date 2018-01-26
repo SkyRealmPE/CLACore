@@ -12,7 +12,7 @@ use pocketmine\utils\TextFormat as C;
 
 use CLACore\Core;
 
-class Heal extends PluginCommand{
+class Heal extends PluginCommand {
 
     public function __construct($name, Core $plugin){
         parent::__construct($name, $plugin);
@@ -30,7 +30,8 @@ class Heal extends PluginCommand{
         }
         if($sender->hasPermission("core.heal") || $sender->isOp()) {
             if ($sender instanceof Player) {
-                
+                $sender->setHealth(20);
+                $sender->setFood(20);
             }
         return true;
     }
