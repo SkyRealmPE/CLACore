@@ -22,7 +22,7 @@ namespace CLACore;
 
 use pocketmine\{Player, Server};
 use pocketmine\plugin\PluginBase;
-use pocketmine\utils\{Textformat as C, Config};
+use pocketmine\utils\{TextFormat as C, Config};
 
 #Commands
 use Commands\{FlyCommand, SpawnCommand, PingCommand, ClearInventoryCommand, ClearlaggCommand};
