@@ -31,54 +31,54 @@ class TpoCommand extends PluginCommand{
 
 	public function __construct($name, Core $plugin){
 		parent::__construct($name, $plugin);
-        $this->setDescription("Teleport to a player.");
-        $this->setPermission("core.tpo");
-        $this->setAliases(["tpo"]);
+		$this->setDescription("Teleport to a player.");
+		$this->setPermission("core.tpo");
+		$this->setAliases(["tpo"]);
 	}
 
 	public function execute(CommandSender $sender, string $commandLabel, array $args){
 
-        if(!$sender->hasPermission("core.tpo")){
+		if(!$sender->hasPermission("core.tpo")){
 			$sender->sendMessage(C::RED . "You are not allow to use '$commandLabel' command.");
 			return true;
-        }
-        
+		}
+		
 		if(!$sender instanceof Player){
-            $sender->sendMessage(C::RED . "Please use '$commandLabel' in game.");
-            return true;
-        }
+			$sender->sendMessage(C::RED . "Please use '$commandLabel' in game.");
+			return true;
+		}
 
-        if(count($args) < 1){
-            $sender->sendMessage("Usage: /tpo <player>");
-            return true;
-        }
+		if(count($args) < 1){
+			$sender->sendMessage("Usage: /tpo <player>");
+			return true;
+		}
 
-        $player = $this->getPlugin()->getServer()->getPlayer($args[0]);
-        
-        if($player === null){
+		$player = $this->getPlugin()->getServer()->getPlayer($args[0]);
+		
+		if($player === null){
 
-            $players = [];
+			$players = [];
 
-            foreach($this->getPlugin()->getServer()->getOnlinePlayers() as $onplayers) array_push($players, $onplayers->getName());
-            sort($players);
+			foreach($this->getPlugin()->getServer()->getOnlinePlayers() as $onplayers) array_push($players, $onplayers->getName());
+			sort($players);
 
-            foreach($players as $onplayers){
-                if(substr(strtolower($onplayers), 0, strlen($args[0])) !== strtolower($args[0])) continue;
-                $player = $this->getPlugin()->getServer()->getPlayer($onplayers);
-                break;
-            }
+			foreach($players as $onplayers){
+				if(substr(strtolower($onplayers), 0, strlen($args[0])) !== strtolower($args[0])) continue;
+				$player = $this->getPlugin()->getServer()->getPlayer($onplayers);
+				break;
+			}
 
-            if($player === null){
-                $sender->sendMessage(C::RED . "$args[0] cannot be found.");
-                return true;
-            }
-        }
+			if($player === null){
+				$sender->sendMessage(C::RED . "$args[0] cannot be found.");
+				return true;
+			}
+		}
 
-        $name = $player->getName();
+		$name = $player->getName();
 
-        $sender->teleport($player->getPosition());
-        $sender->sendMessage(C::GREEN . "Teleporting you to " . C::AQUA . "$name!");
+		$sender->teleport($player->getPosition());
+		$sender->sendMessage(C::GREEN . "Teleporting you to " . C::AQUA . "$name!");
 
-        return true;
-    }
-}       
+		return true;
+	}
+}	   
