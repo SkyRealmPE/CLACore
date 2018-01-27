@@ -14,4 +14,5 @@ Max-Ping: 500
 Fly: true
 Spawn: true
 ClearInventory: true
+Clearlagg: true
 ...

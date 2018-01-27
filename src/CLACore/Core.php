@@ -25,7 +25,7 @@ use pocketmine\plugin\PluginBase;
 use pocketmine\utils\{Textformat as C, Config};
 
 #Commands
-use Commands\{FlyCommand, SpawnCommand, PingCommand, ClearInventoryCommand};
+use Commands\{FlyCommand, SpawnCommand, PingCommand, ClearInventoryCommand, ClearlaggCommand};
 
 #Teleport
 use Commands\Teleport\{TpallCommand, TpoCommand, TpohereCommand};
@@ -116,6 +116,10 @@ class Core extends PluginBase{
 
 		if($this->cmdscfg->get("ClearInventory") == true){
 			$this->getServer()->getCommandMap()->register("ClearInventory", new ClearInventoryCommand("ClearInventory", $this));
+		}
+
+		if($this->cmdscfg->get("Clearlagg") == true){
+			$this->getServer()->getCommandMap()->register("Clearlagg", new ClearlaggCommand("Clearlagg", $this));
 		}
 	}
 
