@@ -40,8 +40,7 @@ use Events\{onBreakEvent, onJoinEvent, onRespawnEvent, onLoginEvent, onExhaustEv
 use Ranks\Rank;
 
 #Tasks
-use Tasks\HighPingCheckTask;
-use Broadcast\BroadcastTask;
+use Tasks\{HighPingCheckTask, BroadcastTask};
 
 class Core extends PluginBase{
 
