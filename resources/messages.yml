@@ -1,6 +1,6 @@
 ---
 #Tags List:
-#- {name} works for (Spawn, Fly)
+#- {name} works for (Spawn, Fly, ClearInventory)
 
 #-----------ECONOMY----------#
 Economy-Prefix: CLADevs
@@ -11,4 +11,7 @@ Fly-Disable-Message: §cFly disabled.
 
 #-----------SPAWN----------#
 Spawn-Teleport-Message: §aTeleporting §b{name} to spawn.
+
+ClearInventory-player-Message: §eYour all inventory has been cleared.
+ClearInventory-sender-Message: §b{name}§e inventory has been cleared.
 ...
