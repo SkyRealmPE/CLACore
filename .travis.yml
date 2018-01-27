@@ -10,4 +10,3 @@ install:
 
 script:
 - "if [ -f ${TRAVIS_BUILD_DIR}/../PocketMine/unstaged/CLACore.phar ] ; then wget -O - https://poggit.pmmp.io/res/travisScript.sh | bash -s - CLACore CLACore ; else true ; fi"
- - ./travis.sh
