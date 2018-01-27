@@ -1,0 +1,12 @@
+language: php
+php: ["7.2"]
+sudo: false
+dist: trusty
+notifications:
+  email: false
+
+install:
+- "wget -O - https://poggit.pmmp.io/res/travisInstall.sh | bash -s - || true"
+
+script:
+- "if [ -f ${TRAVIS_BUILD_DIR}/../PocketMine/unstaged/CLACore.phar ] ; then wget -O - https://poggit.pmmp.io/res/travisScript.sh | bash -s - CLACore CLACore ; else true ; fi"
