@@ -48,5 +48,11 @@ class onJoinEvent implements Listener {
 		if($player->spawned){
 			$core->getServer()->getScheduler()->scheduleDelayedTask(new TitleTask($core, $player), 50); //2.5 Second.
 		}
+		
+		#DeviceBlocker
+		if($config->get("Device-Blocker") == true){
+			if($player->getDeviceOs() == $this->getConfig()->get("DeviceBlocker")){ 
+				$kickmsg = $this->getConfig()->get("kickmsg");
+				 $player->kick($kickmsg);
 	}
 }
