@@ -40,7 +40,7 @@ use Events\{onBreakEvent, onJoinEvent, onRespawnEvent, onLoginEvent, onExhaustEv
 use Ranks\Rank;
 
 #Tasks
-use Tasks\{HighPingCheckTask, BroadcastTask};
+use Tasks\{HighPingCheckTask, BroadcastTask, ClearlaggTask};
 
 class Core extends PluginBase{
 
@@ -148,8 +148,13 @@ class Core extends PluginBase{
 
 	private function RegTasks(){
 		if($this->cfg->get("Allow-Broadcast") == true){
-		$tick = $this->broadcastcfg->getNested("broadcast.tick");
-		$this->getServer()->getScheduler()->scheduleRepeatingTask(new BroadcastTask($this), $tick); #20 = 1 second
+			$tick = $this->broadcastcfg->getNested("broadcast.tick");
+			$this->getServer()->getScheduler()->scheduleRepeatingTask(new BroadcastTask($this), $tick); #20 = 1 second
+		}
+
+		if($this->cfg->get("Auto-ClearLagg") == true){
+			$tick = $this->cmdscfg->get("Clearlagg-tick");
+			$this->getServer()->getScheduler()->scheduleRepeatingTask(new ClearlaggTask($this), $tick); #20 = 1 second
 		}
 
 		if($this->cmdscfg->get("High-Ping-Kick") == true){
