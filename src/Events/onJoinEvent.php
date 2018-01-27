@@ -51,7 +51,7 @@ class onJoinEvent implements Listener {
 		
 		#DeviceBlocker
 		if($config->get("Device-Blocker") == true){
-			if($player->getDeviceOs() == $this->getConfig()->get("DeviceBlocker")){ 
+			if($player->getDeviceOs() == $core->getConfig()->get("DeviceBlocker")){
 				$kickmsg = $this->getConfig()->get("kickmsg");
 				 $player->kick($kickmsg);
 			}
