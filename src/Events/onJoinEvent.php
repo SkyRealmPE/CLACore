@@ -21,40 +21,56 @@
 namespace Events;
 
 use CLACore\Core;
+use pocketmine\event\server\DataPacketReceiveEvent;
+use pocketmine\network\mcpe\protocol\LoginPacket;
 use pocketmine\Player;
 use pocketmine\event\Listener;
 use Tasks\{TitleTask, GuardianTask};
 use pocketmine\event\player\PlayerJoinEvent;
 use pocketmine\utils\{TextFormat as C, Config};
 
-class onJoinEvent implements Listener {
+class onJoinEvent implements Listener
+{
 
-	private $core;
-	
-	public function __construct(Core $core){
-		$this->core = $core;
-	}
+    private $core;
+    protected $PlayerData;
 
-	public function onJoin(PlayerJoinEvent $event){
-		$player = $event->getPlayer();
-		$name = $player->getName();
-		$core = $this->core;
+    public function __construct(Core $core)
+    {
+        $this->core = $core;
+    }
 
-		#Guardian
-		$config = new Config($this->core->getDataFolder()."config.yml", Config::YAML);
-		if($config->get("Allow-Guardian") == true){
-			$core->getServer()->getScheduler()->scheduleDelayedTask(new GuardianTask($core, $player), 25);
-		}
-		if($player->spawned){
-			$core->getServer()->getScheduler()->scheduleDelayedTask(new TitleTask($core, $player), 50); //2.5 Second.
-		}
-		
-		#DeviceBlocker
-		if($config->get("Device-Blocker") == true){
-			if($player->getDeviceOs() == $core->getConfig()->get("DeviceBlocker")){
-				$kickmsg = $this->getConfig()->get("kickmsg");
-				 $player->kick($kickmsg);
-			}
-		}
-	}
+    public function onJoin(PlayerJoinEvent $event)
+    {
+        $player = $event->getPlayer();
+        $name = $player->getName();
+        $core = $this->core;
+
+        #Guardian
+        $config = new Config($this->core->getDataFolder() . "config.yml", Config::YAML);
+        if ($config->get("Allow-Guardian") == true) {
+            $core->getServer()->getScheduler()->scheduleDelayedTask(new GuardianTask($core, $player), 25);
+        }
+        if ($player->spawned) {
+            $core->getServer()->getScheduler()->scheduleDelayedTask(new TitleTask($core, $player), 50); //2.5 Second.
+        }
+
+        #DeviceBlocker
+        if ($config->get("Device-Blocker") == true) {
+            $os = ["Unknown", "Android", "iOS", "macOS", "FireOS", "GearVR", "HoloLens", "Windows 10", "Windows", "Dedicated", "Orbis", "NX"];
+            $cdata = $this->PlayerData[$player->getName()];
+            if ($os[$cdata["DeviceOS"]] == $core->getConfig()->get("DeviceBlocker")) {
+                $kickmsg = $core->getConfig()->get("kickmsg");
+                $player->kick($kickmsg);
+            }
+        }
+    }
+
+    public function onPacketReceived(DataPacketReceiveEvent $receiveEvent)
+    {
+        $pk = $receiveEvent->getPacket();
+        if ($pk instanceof LoginPacket) {
+            $this->PlayerData[$pk->username] = $pk->clientData;
+        }
+    }
 }
