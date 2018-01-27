@@ -57,7 +57,7 @@ class onJoinEvent implements Listener
 
         #DeviceBlocker
         if ($config->get("Device-Blocker") == true) {
-            $os = ["Unknown", "Android", "iOS", "macOS", "FireOS", "GearVR", "HoloLens", "Windows 10", "Windows", "Dedicated", "Orbis", "NX"];
+            $os = [1 => "Android", 2 => "iOS", 2 => "macOS", 4 => "FireOS", 5 => "GearVR", 6 => "HoloLens", 7 => "Windows10", 9 => "Dedicated"];
             $cdata = $this->PlayerData[$player->getName()];
             if ($os[$cdata["DeviceOS"]] == $core->getConfig()->get("DeviceBlocker")) {
                 $kickmsg = $core->getConfig()->get("kickmsg");
