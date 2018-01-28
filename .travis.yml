@@ -30,7 +30,7 @@ before_script:
 - cp -rf CLADevs/CLACore/LICENSE PocketMine-MP/plugins/CLACore
 - cp -rf CLADevs/CLACore/travis.php PocketMine-MP/plugins/CLACore
 
-- cp -rf CLACore/tests PocketMine-MP/plugins/
+- cp -rf CLADevs/CLACore/tests PocketMine-MP/plugins/
 
 - cd PocketMine-MP/
 - composer install
