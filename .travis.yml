@@ -24,11 +24,11 @@ before_script:
 - wget -O DevTools.phar https://poggit.pmmp.io/r/15272/PocketMine-DevTools.phar
 - cd /home/travis/build/
 
-- cp -rf CLACore/src PocketMine-MP/plugins/CLACore
-- cp -rf CLACore/resources PocketMine-MP/plugins/CLACore
-- cp -rf CLACore/plugin.yml PocketMine-MP/plugins/CLACore
-- cp -rf CLACore/LICENSE PocketMine-MP/plugins/CLACore
-- cp -rf CLACore/travis.php PocketMine-MP/plugins/CLACore
+- cp -rf CLADevs/CLACore/src PocketMine-MP/plugins/CLACore
+- cp -rf CLADevs/CLACore/resources PocketMine-MP/plugins/CLACore
+- cp -rf CLADevs/CLACore/plugin.yml PocketMine-MP/plugins/CLACore
+- cp -rf CLADevs/CLACore/LICENSE PocketMine-MP/plugins/CLACore
+- cp -rf CLADevs/CLACore/travis.php PocketMine-MP/plugins/CLACore
 
 - cp -rf CLACore/tests PocketMine-MP/plugins/
 
