@@ -175,7 +175,7 @@ class Core extends PluginBase{
 
 	public function reduceMoney($player, $money){
 		if($player instanceof Player){
-			$player->getName();
+			$player = $player->getName();
 		}
 		if($this->myMoney($player) - $money < 0){
 			return true;
@@ -188,7 +188,7 @@ class Core extends PluginBase{
 
 	public function addMoney($player, $money){
 		if($player instanceof Player){
-			$player->getName();
+			$player = $player->getName();
 		}
 		if($this->myMoney($player) + $money < 0){
 			return true;
