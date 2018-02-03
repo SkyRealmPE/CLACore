@@ -37,31 +37,23 @@ class TpoCommand extends PluginCommand{
 	}
 
 	public function execute(CommandSender $sender, string $commandLabel, array $args){
-
 		if(!$sender->hasPermission("core.tpo")){
 			$sender->sendMessage(C::RED . "You are not allow to use '$commandLabel' command.");
 			return true;
 		}
-		
 		if(!$sender instanceof Player){
 			$sender->sendMessage(C::RED . "Please use '$commandLabel' in game.");
 			return true;
 		}
-
 		if(count($args) < 1){
 			$sender->sendMessage("Usage: /tpo <player>");
 			return true;
 		}
-
 		$player = $this->getPlugin()->getServer()->getPlayer($args[0]);
-		
 		if($player === null){
-
 			$players = [];
-
 			foreach($this->getPlugin()->getServer()->getOnlinePlayers() as $onplayers) array_push($players, $onplayers->getName());
 			sort($players);
-
 			foreach($players as $onplayers){
 				if(substr(strtolower($onplayers), 0, strlen($args[0])) !== strtolower($args[0])) continue;
 				$player = $this->getPlugin()->getServer()->getPlayer($onplayers);
@@ -73,12 +65,9 @@ class TpoCommand extends PluginCommand{
 				return true;
 			}
 		}
-
 		$name = $player->getName();
-
 		$sender->teleport($player->getPosition());
 		$sender->sendMessage(C::GREEN . "Teleporting you to " . C::AQUA . "$name!");
-
 		return true;
 	}
 }	   

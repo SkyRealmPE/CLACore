@@ -31,63 +31,51 @@ class ClearInventoryCommand extends PluginCommand{
 
 	public function __construct($name, Core $plugin){
 		parent::__construct($name, $plugin);
-        $this->setDescription("Clear a player inventory.");
-        $this->setPermission("core.clearinventory", "core.clearinv");
-        $this->setAliases(["clearinventory", "clearinv"]);
+		$this->setDescription("Clear a player inventory.");
+		$this->setPermission("core.clearinventory", "core.clearinv");
+		$this->setAliases(["clearinventory", "clearinv"]);
 	}
 
 	public function execute(CommandSender $sender, string $commandLabel, array $args){
-
-        $plugin = $this->getPlugin();
-
-        $sendermessage = $plugin->msgcfg->get("ClearInventory-sender-Message");
-        $playermessage = $plugin->msgcfg->get("ClearInventory-player-Message");
-
-        
-        if(!$sender->hasPermission("core.clearinventory", "core.clearinv")){
-            $sender->sendMessage(C::RED . "You are not allow to use '$commandLabel' command.");
-            return true;
-        }
-        
-        if(count($args) < 1){
-            $sender->sendMessage("Usage: /clearinv <all> <player>");
-            return true;
-        }
-
-        switch($args[0]){
-            case "all":
-            case "All":
-
-            if(count($args) < 2){
-                $sender->sendMessage("Usage: /clearinv all <player>");
-                return true;
-            }
-
-            if(isset($args[1])){
-                $player = $plugin->getServer()->getPlayer($args[1]);
-                if (!$player instanceof Player) {
-                    if ($player instanceof ConsoleCommandSender){
-                        $sender->sendMessage(C::RED . "Please provide a player.");
-                        return false;
-                    }
-                    $sender->sendMessage(C::RED . "Could'nt find player " . $args[1] . ".");
-                    return false;
-                }
-            }
-
-            $sendermessage = str_replace("{name}", $player->getName(), $sendermessage);
-            
-            $inv = $player->getInventory();
-
-            $inv->ClearAll();
-            $player->sendMessage("$playermessage");
-            $sender->sendMessage("$sendermessage");
-            break;
-            default:
-            $sender->sendMessage("Usage: /clearinv <all> <player>");
-            break;
-        }
-
+		$plugin = $this->getPlugin();
+		$sendermessage = $plugin->msgcfg->get("ClearInventory-sender-Message");
+		$playermessage = $plugin->msgcfg->get("ClearInventory-player-Message");
+		if(!$sender->hasPermission("core.clearinventory", "core.clearinv")){
+			$sender->sendMessage(C::RED . "You are not allow to use '$commandLabel' command.");
+			return true;
+		}
+		if(count($args) < 1){
+			$sender->sendMessage("Usage: /clearinv <all> <player>");
+			return true;
+		}
+		switch($args[0]){
+			case "all":
+			case "All":
+			if(count($args) < 2){
+				$sender->sendMessage("Usage: /clearinv all <player>");
+				return true;
+			}
+			if(isset($args[1])){
+				$player = $plugin->getServer()->getPlayer($args[1]);
+				if (!$player instanceof Player) {
+					if ($player instanceof ConsoleCommandSender){
+						$sender->sendMessage(C::RED . "Please provide a player.");
+						return false;
+					}
+					$sender->sendMessage(C::RED . "Could'nt find player " . $args[1] . ".");
+					return false;
+				}
+			}
+			$sendermessage = str_replace("{name}", $player->getName(), $sendermessage);
+			$inv = $player->getInventory();
+			$inv->ClearAll();
+			$player->sendMessage("$playermessage");
+			$sender->sendMessage("$sendermessage");
+			break;
+			default:
+			$sender->sendMessage("Usage: /clearinv <all> <player>");
+			break;
+		}
 		return true;
-    }
+	}
 }
