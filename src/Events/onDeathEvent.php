@@ -22,7 +22,7 @@ use pocketmine\utils\Config;
 use pocketmine\event\Listener;
 use pocketmine\event\entity\EntityDamageByEntityEvent;
 use pocketmine\event\player\PlayerDeathEvent;
-class onExhaustEvent implements Listener {
+class onDeathEvent implements Listener {
 	
 	private $plugin;
 	
@@ -40,10 +40,10 @@ class onExhaustEvent implements Listener {
         $kills = $datak->get($killer->getName());
         $deaths = $datad->get($killer->getName());
 	$deathmessage = $this->plugin->msgcfg->get("Death-Message");
-        $message = str_replace("{VICTIM}, $player->getName(), $deathmessage;
-        $message = str_replace("{VICTIM-DEATHS}, $deaths, $deathmessage;
-        $message = str_replace("{KILLER}, $killer->getName(), $deathmessage;
-        $message = str_replace("{KILLER-KILLS}, $kills, $deathmessage;
+        $message = str_replace("{VICTIM}, $player->getName(), $deathmessage);
+        $message = str_replace("{VICTIM-DEATHS}, $deaths, $deathmessage);
+        $message = str_replace("{KILLER}, $killer->getName(), $deathmessage);
+        $message = str_replace("{KILLER-KILLS}, $kills, $deathmessage);
         $event->setDeathMessage($message);
         if($kills == "") {
           $datak->set($killer->getName(), 1);
