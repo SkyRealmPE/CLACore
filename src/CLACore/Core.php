@@ -34,7 +34,7 @@ use Commands\Teleport\{TpallCommand, TpoCommand, TpohereCommand};
 use Commands\Economy\{MoneyCommand, AddMoneyCommand, SeeMoneyCommand, SetMoneyCommand, TakeMoneyCommand};
 
 #Events
-use Events\{onBreakEvent, onJoinEvent, onRespawnEvent, onLoginEvent, onExhaustEvent, onMoveEvent};
+use Events\{onBreakEvent, onDeathEvent, onJoinEvent, onRespawnEvent, onLoginEvent, onExhaustEvent, onMoveEvent};
 
 #Rank
 use Ranks\Rank;
@@ -90,6 +90,7 @@ class Core extends PluginBase{
 		}
 
 		$this->getServer()->getPluginManager()->registerEvents(($this->onBreakEvent = new onBreakEvent($this)), $this);
+		$this->getServer()->getPluginManager()->registerEvents(($this->onDeathEvent = new onDeathEvent($this)), $this);
 		$this->getServer()->getPluginManager()->registerEvents(($this->onRespawnEvent = new onRespawnEvent($this)), $this);
 		$this->getServer()->getPluginManager()->registerEvents(($this->onJoinEvent = new onJoinEvent($this)), $this);
 		$this->getServer()->getPluginManager()->registerEvents(($this->onLoginEvent = new onLoginEvent($this)), $this);
