@@ -69,6 +69,8 @@ class Core extends PluginBase{
 		$this->saveResource("broadcasts.yml");
 		$this->saveResource("commands.yml");
 		$this->saveResource("config.yml");
+		$this->saveResource("deaths.yml");
+		$this->saveResource("kills.yml");
 		$this->saveResource("messages.yml");
 		$this->saveResource("money.yml");
 		$this->saveResource("rank.yml");
