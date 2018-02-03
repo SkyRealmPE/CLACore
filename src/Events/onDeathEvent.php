@@ -39,10 +39,11 @@ class onExhaustEvent implements Listener {
         $killer = $player->getLastDamageCause()->getDamager();
         $kills = $datak->get($killer->getName());
         $deaths = $datad->get($killer->getName());
-        $message = str_replace("{VICTIM}, $player->getName(), $event->getMessage();
-        $message = str_replace("{VICTIM-DEATHS}, $deaths, $event->getMessage();
-        $message = str_replace("{KILLER}, $killer->getName(), $event->getMessage();
-        $message = str_replace("{KILLER-KILLS}, $kills, $event->getMessage();
+	$deathmessage = $this->plugin->msgcfg->get("Death-Message");
+        $message = str_replace("{VICTIM}, $player->getName(), $deathmessage;
+        $message = str_replace("{VICTIM-DEATHS}, $deaths, $deathmessage;
+        $message = str_replace("{KILLER}, $killer->getName(), $deathmessage;
+        $message = str_replace("{KILLER-KILLS}, $kills, $deathmessage;
         $event->setDeathMessage($message);
         if($kills == "") {
           $datak->set($killer->getName(), 1);
