@@ -2,6 +2,13 @@
 #Tags List:
 #- {name} works for (Spawn, Fly, ClearInventory)
 
+#-----------DEATH-----------#
+# {VICTIM} - Name of player who died
+# {VICTIM-DEATHS} - Total deaths of player who died
+# {KILLER} - Name of killer
+# {KILLER-KILLS} - Total kills of killer
+Death-Message: {VICTIM}({VICTIM-DEATHS}) was killed by {KILLER}({KILLER-KILLS})
+
 #-----------ECONOMY----------#
 Economy-Prefix: CLADevs
 
